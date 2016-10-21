@@ -18,10 +18,32 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+		parent::__construct();
+		$this->load->model('home_model');
+	}
+
 	public function index()
 	{
 		$this->load->view('header');
-		$this->load->view('home');
+		$this->load->view('home_view');
 		$this->load->view('footer');
 	}
+
+	public function save_data()
+	{
+		$data=array
+		(
+			'task'=>$this->input->post('task'),
+			'date'=>date("y.m.d"),
+			'time'=>time(),
+		);
+			$insert=$this->home_model->crud($data);
+			echo json_encode(array("status" => TRUE));
+	}
+
+
+
+
 }
