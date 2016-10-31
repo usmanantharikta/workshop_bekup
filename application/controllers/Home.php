@@ -58,7 +58,7 @@ class Home extends CI_Controller {
 		(
 		'task'=>$this->input->post('task'),
 		'date'=>date("y.m.d"),
-		'time'=>date("h.i.s"),
+		'time'=>date('H:i:s'),
 	);
 	$insert=$this->home_model->crud($data);
 	echo json_encode(array("status" => TRUE));
