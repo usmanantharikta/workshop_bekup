@@ -10,6 +10,7 @@
 	<!-- Boostrp material design -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-material-design.css');?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/ripples.css');?>">
-	<!-- <script src="<?php echo base_url('assets/js/jquery-3.1.1.js');?>"></script> -->
-	  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+	<script src="<?php echo base_url('assets/js/jquery-3.1.1.js');?>"></script>
+	  <!-- <script src="//code.jquery.com/jquery-1.10.2.min.js"></script> -->
 	</head>

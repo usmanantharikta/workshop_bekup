@@ -27,8 +27,25 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('header');
-		$this->load->view('home_view');
+		$data['data']=$this->home_model->getdata();
+		$this->load->view('home_view',$data);
 		$this->load->view('footer');
+	}
+
+	public function show()
+	{
+		$result=$this->home_model->getdata();
+		$data=array();
+		foreach ($result as $key) {
+			array_push($data, array(
+				$key['task'],
+				$key['date'],
+				$key['time'],
+				'<a class="btn btn-sm btn-default" href="javascript:void()" title="Edit" onclick="edit('."'".$key['id']."'".')"><i class="glyphicon glyphicon-pencil"></i> </a>
+									<a class="btn btn-sm btn-danger" href="javascript:void()" title="Hapus" onclick="delete('."'".$key['id']."'".')"><i class="glyphicon glyphicon-trash"></i> </a>',
+			));
+		}
+		echo json_encode(array('data'=>$data));
 	}
 
 	public function save_data()
@@ -37,10 +54,16 @@ class Home extends CI_Controller {
 		(
 			'task'=>$this->input->post('task'),
 			'date'=>date("y.m.d"),
-			'time'=>time(),
+			'time'=>date("h.i.s"),
 		);
 			$insert=$this->home_model->crud($data);
 			echo json_encode(array("status" => TRUE));
+	}
+
+	public function edit($id)
+	{
+		$data = $this->home_model->get_by_id($id);
+		echo json_encode($data);
 	}
 
 
