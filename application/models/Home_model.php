@@ -23,4 +23,18 @@ class Home_model extends CI_Model {
     return $query->row();
   }
 
+  public function update($where, $data)
+  {
+    $this->db->update('tbl_task', $data, $where);
+    return $this->db->affected_rows();
+  }
+
+  public function delete_by_id($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->delete('tbl_task');
+  }
+
+
+
 }
